@@ -12,16 +12,18 @@
 </head>
     <script>
         const container = document.querySelector('.container');
+        let size = 4;
 
-        let size = 16;
-
+        function changeColor(e) {
+            e.target.style.backgroundColor = "black";
+        }
         
         function grid(size) {
-            for (let i = 0; i <= size; i++) {
+            for (let i = 0; i < size; i++) {
                 let row = document.createElement('div');
                 row.classList.add('row');
                 container.appendChild(row);
-                for (let j = 0; j <= size; j++) {
+                for (let j = 0; j < size; j++) {
                     let cell = document.createElement('div');
                     cell.classList.add('cell');
                     row.appendChild(cell);
@@ -29,6 +31,9 @@
             }
         }
         grid(size);
+
+        const rows = document.querySelectorAll('.row');
+        rows.forEach(row => row.addEventListener("mouseover", changeColor));
         
         
 
