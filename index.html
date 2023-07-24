@@ -5,20 +5,49 @@
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" href="styles.css">
     <body>
-        <div class="container">
+        <div class="holder">
+
+            <div class="funt">
+                <div class="colorWheel">
+                    
+                </div>
+
+                <div class="sizeSlider">
+                    <input type="range" name="rangeInput" min="1" max="64" value="1" onchange="grid(this.value);">
+                    <input type="text" id="textInput" value="">
+                </div>
+
+                <div class="clearButton">
+                    <button onclick="clearGrid()">Clear</button>
+                </div>
+
+            <div class="container">
+
+            </div>
 
         </div>
     </body>
 </head>
     <script>
         const container = document.querySelector('.container');
-        let size = 4;
-
+        let mouseDown = false;
+        let size = 1;
+  
         function changeColor(e) {
-            e.target.style.backgroundColor = "black";
+
+            if (mouseDown) {
+                e.target.style.backgroundColor = "black";
+            }
         }
-        
+
+        function clearGrid() {
+            const rows = document.querySelectorAll('.row');
+            rows.forEach(row => row.remove());
+        }
+
         function grid(size) {
+            document.getElementById('textInput').value=size; 
+            console.log(size);
             for (let i = 0; i < size; i++) {
                 let row = document.createElement('div');
                 row.classList.add('row');
@@ -28,13 +57,14 @@
                     cell.classList.add('cell');
                     row.appendChild(cell);
                 }
+                const rows = document.querySelectorAll('.row');
+                rows.forEach(row => row.addEventListener("mousedown", () => mouseDown = true));
+                rows.forEach(row => row.addEventListener("mouseup", () => mouseDown = false));
+                rows.forEach(row => row.addEventListener("mouseover", changeColor));
             }
         }
+      
         grid(size);
-
-        const rows = document.querySelectorAll('.row');
-        rows.forEach(row => row.addEventListener("mouseover", changeColor));
-        
         
 
     </script>
