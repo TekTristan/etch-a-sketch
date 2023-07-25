@@ -9,6 +9,11 @@
 
             <div class="funt">
 
+                <div class="colorWheel">
+                    <input type="text" id="hex">
+                    <input type="color" id="color">
+                </div>
+
                 <div class="sizeSlider">
                     <input type="range" name="rangeInput" min="1" max="64" value="1" onchange="getSize(this.value);">
                     <input type="text" id="textInput" value="">
@@ -31,7 +36,7 @@
                 </div>
 
             <div class="container">
-
+                    
             </div>
 
         </div>
@@ -39,21 +44,19 @@
 </head>
     <script>
         const container = document.querySelector('.container');
+        let colorInput = document.querySelector('#color');
+        let hexInput = document.querySelector('#hex');
         let mouseDown = false;
         let size = 1;
 
         function fill() {
+            changeColor();
             const cells = document.querySelectorAll('.cell');
-            cells.forEach(cell => cell.style.backgroundColor = "black")
-            console.log('test');
+            cells.forEach(cell => cell.style.backgroundColor = colorInput.value);
         }
 
         function pencil() {
-            function changeColor(e) {
-                if (mouseDown) {
-                    e.target.style.backgroundColor = "black";
-                }
-            }
+            changeColor();
             const rows = document.querySelectorAll('.row');
             rows.forEach(row => row.addEventListener("mousedown", () => mouseDown = true));
             rows.forEach(row => row.addEventListener("mouseup", () => mouseDown = false));
@@ -86,8 +89,12 @@
         }
   
         function changeColor(e) {
+            colorInput.addEventListener('input', () => {
+                let color = colorInput.value;
+                hexInput.value = color;
+            });
             if (mouseDown) {
-                e.target.style.backgroundColor = "black";
+                e.target.style.backgroundColor = colorInput.value;
             }
         }
 

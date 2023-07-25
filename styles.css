@@ -1,8 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: 25vh;
-    height: 25vh;
+    max-width: 25vh;
+    max-height: 25vh;
 }
 
 .row, .cell{
