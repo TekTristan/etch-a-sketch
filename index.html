@@ -118,11 +118,12 @@
                     cell.style.height = `${dim}px`;
                     row.appendChild(cell);
                 }
-            }
-            const rows = document.querySelectorAll('.row');
+                const rows = document.querySelectorAll('.row');
                 rows.forEach(row => row.addEventListener("mousedown", () => mouseDown = true));
                 rows.forEach(row => row.addEventListener("mouseup", () => mouseDown = false));
                 rows.forEach(row => row.addEventListener("mouseover", changeColor));
+            }
+
         }
       
         grid(size);
