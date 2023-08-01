@@ -7,14 +7,14 @@
 .holder {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
+
 
 .container {
     display: flex;
     flex-direction: column;
-    max-width: 25vh;
-    max-height: 25vh;
+    width: 700px;
+    height: 700px;
 }
 
 .row, .cell{
@@ -23,9 +23,11 @@
     flex-wrap: wrap;
     justify-content: center;
     background-color: white;
-    width: 5vh;
-    height: 5vh;
+    width: 5px;
+    height: 5px;
     border: 1px solid lightgray;
+    box-sizing: border-box;
 }
+
 
 
