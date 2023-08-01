@@ -55,14 +55,23 @@
         let mouseDown = false;
         let size = 1;
 
+        colorInput.addEventListener('input', () => {
+            let color = colorInput.value;
+            hexInput.value = color;
+        });
+
+        function changeColor(e) {
+            if (mouseDown) {
+                e.target.style.backgroundColor = colorInput.value;
+            }
+        }
+
         function fill() {
-            changeColor();
             const cells = document.querySelectorAll('.cell');
             cells.forEach(cell => cell.style.backgroundColor = colorInput.value);
         }
 
         function pencil() {
-            changeColor();
             const rows = document.querySelectorAll('.row');
             rows.forEach(row => row.addEventListener("mousedown", () => mouseDown = true));
             rows.forEach(row => row.addEventListener("mouseup", () => mouseDown = false));
@@ -94,31 +103,26 @@
             clearGrid();
         }
   
-        function changeColor(e) {
-            colorInput.addEventListener('input', () => {
-                let color = colorInput.value;
-                hexInput.value = color;
-            });
-            if (mouseDown) {
-                e.target.style.backgroundColor = colorInput.value;
-            }
-        }
 
         function grid(size) {
+            let dim = 700 / size;
             for (let i = 0; i < size; i++) {
                 let row = document.createElement('div');
                 row.classList.add('row');
+                row.style.height = `${dim}px`;
                 container.appendChild(row);
                 for (let j = 0; j < size; j++) {
                     let cell = document.createElement('div');
                     cell.classList.add('cell');
+                    cell.style.width = `${dim}px`;
+                    cell.style.height = `${dim}px`;
                     row.appendChild(cell);
                 }
-                const rows = document.querySelectorAll('.row');
+            }
+            const rows = document.querySelectorAll('.row');
                 rows.forEach(row => row.addEventListener("mousedown", () => mouseDown = true));
                 rows.forEach(row => row.addEventListener("mouseup", () => mouseDown = false));
                 rows.forEach(row => row.addEventListener("mouseover", changeColor));
-            }
         }
       
         grid(size);
