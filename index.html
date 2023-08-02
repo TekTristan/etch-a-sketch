@@ -16,13 +16,13 @@
             </div>
             <div class="holder">
                 <div class="colorWheel">
-                    <input type="text" id="hex">
+                    <!-- <input type="text" id="hex"> -->
                     <input type="color" id="color">
                 </div>
 
                 <div class="sizeSlider">
-                    <input type="range" name="rangeInput" min="1" max="64" value="1" onchange="getSize(this.value);">
-                    <input type="text" id="textInput" value="">
+                    <input type="range" name="rangeInput" min="1" max="64" value="16" onchange="getSize(this.value);">
+                    <input type="text" id="textInput" value="16">
                 </div>
 
                 <div class="pencil">
@@ -50,7 +50,9 @@
         let colorInput = document.querySelector('#color');
         let hexInput = document.querySelector('#hex');
         let mouseDown = false;
-        let size = 1;
+        let size = 16;
+        
+
 
         function changeColor(e) {
             if (mouseDown) {
